@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# https://github.com/koekeishiya/yabai/wiki/Commands#message-passing-interface
+
+if [ -e "$HOME"/.gridspacesrc ]; then
+  # shellcheck disable=SC1091
+  source "$HOME"/.gridspacesrc
+fi
+
+grid_columns=${GRID_COLUMNS:-1}
+
+number_of_spaces=$(yabai --message query --spaces | jq '. | length')
+# Get 0-based index of focused space
+focused_space=$(($(yabai --message query --spaces | jq '.[] | select(."has-focus" == true) | .index') - 1))
+
+col=$((focused_space%grid_columns))
+# row=$((focused_space/grid_columns))
+
+target_space=$focused_space
+direction="$1"
+
+case "$direction" in
+  "up")
+    ((target_space-=grid_columns))
+    ;;
+  "down")
+    ((target_space+=grid_columns))
+    ;;
+  "left")
+    if [ "$col" -gt 0 ]; then
+      ((target_space-=1))
+    fi
+    ;;
+  "right")
+    if [ "$col" -lt $((grid_columns - 1)) ]; then
+      ((target_space+=1))
+    fi
+    ;;
+esac
+
+if [ "$target_space" -ne "$focused_space" ] && [ "$target_space" -ge 0 ] && [ "$target_space" -lt "$number_of_spaces" ]; then
+  # Set 1-based index of focused space
+  yabai --message space --focus $((target_space + 1))
+
+  # focused_space=$(($(yabai --message query --spaces | jq '.[] | select(."has-focus" == true) | .index') - 1))
+  # col=$((focused_space%grid_columns))
+  # row=$((focused_space/grid_columns))
+  # osascript -e 'display notification "('$col', '$row')" with title "Spaces"'
+fi
