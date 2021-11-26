@@ -16,7 +16,22 @@ col=$((focused_space%grid_columns))
 # row=$((focused_space/grid_columns))
 
 target_space=$focused_space
-direction="$1"
+
+move_window=false
+direction=""
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --move-window)
+      move_window=true
+      shift
+      ;;
+    *)
+      direction="$1"
+      shift
+      ;;
+  esac
+done
 
 case "$direction" in
   "up")
@@ -38,6 +53,11 @@ case "$direction" in
 esac
 
 if [ "$target_space" -ne "$focused_space" ] && [ "$target_space" -ge 0 ] && [ "$target_space" -lt "$number_of_spaces" ]; then
+  if "$move_window"; then
+    # Move window to space (1-based)
+    yabai --message window --space $((target_space + 1))
+  fi
+
   # Set 1-based index of focused space
   yabai --message space --focus $((target_space + 1))
 
