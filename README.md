@@ -3,9 +3,17 @@
 Grid spaces a la [TotalSpaces2](https://totalspaces.binaryage.com/), but for
 [macOS Monterey](https://www.apple.com/macos/monterey/), built on
 [yabai](https://github.com/koekeishiya/yabai) and
-[skhd](https://github.com/koekeishiya/skhd).
+[skhd](https://github.com/koekeishiya/skhd). You also need
+[jq](https://stedolan.github.io/jq/) to make the magic work - and `jq` is a
+magic tool in itself!
 
 ## Installation
+
+Install `jq`:
+
+```sh
+brew install jq
+```
 
 Check the [installation
 requirements](https://github.com/koekeishiya/yabai/wiki#installation-requirements)
@@ -13,6 +21,7 @@ for `yabai` and install it:
 
 ```sh
 brew install yabai --HEAD
+brew services start koekeishiya/formulae/yabai
 ```
 
 Create the desired number of spaces [using
@@ -23,7 +32,6 @@ Make sure that `yabai` works and can focus spaces by running a command like
 
 ```sh
 yabai --message space --focus next
-brew services start yabai
 ```
 
 Create the file `~/.gridspacesrc` and define the number of columns in your grid:
@@ -56,6 +64,16 @@ cmd + ctrl + shift - right : «path to this directory»/navigate --move-window r
 ```
 
 That's it! Now you should be able to use your grid.
+
+## Updating
+
+```sh
+brew reinstall yabai
+brew services stop koekeishiya/formulae/yabai
+sudo yabai --uninstall-sa
+sudo yabai --install-sa
+brew services start koekeishiya/formulae/yabai
+```
 
 ## Coding standards
 
