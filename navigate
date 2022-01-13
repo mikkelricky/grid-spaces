@@ -65,4 +65,6 @@ if [ "$target_space" -ne "$focused_space" ] && [ "$target_space" -ge 0 ] && [ "$
   # col=$((focused_space%grid_columns))
   # row=$((focused_space/grid_columns))
   # osascript -e 'display notification "('$col', '$row')" with title "Spaces"'
+
+  say "You've now moved $direction to space $target_space from space $focused_space"?
 fi
