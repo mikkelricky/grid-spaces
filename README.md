@@ -108,7 +108,7 @@ brew services start koekeishiya/formulae/yabai
 brew install shellcheck
 ```
 
-Check to code:
+Check the code:
 
 ```sh
 shellcheck navigate
