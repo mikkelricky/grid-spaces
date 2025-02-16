@@ -21,7 +21,7 @@ for `yabai` and install it:
 
 ```sh
 brew install yabai --HEAD
-brew services start koekeishiya/formulae/yabai
+yabai --start-service
 ```
 
 Create the desired number of spaces [using
@@ -78,6 +78,17 @@ preferences are set correctly:
   application” **may be** checked and might come in handy if you’ve lost a
   window for an application that you’re onyl use on special occasions.
 
+```shell
+# Uncheck “Automatically rearrange Spaces based on most recent use”
+defaults write com.apple.dock mru-spaces -boolean false
+
+# You may want to check “When switching to an application, switch to a Space with open windows for the application”.
+defaults write 'Apple Global Domain' AppleSpacesSwitchOnActivate -boolean true
+
+# Reload the system preferences
+killall 'System preferences'
+```
+
 Furthermore, all Mission Control space switching keyboard shortcuts should be
 disabled as all Space navigation should be handled by `skhd` calling the
 `navigate` script:
@@ -94,10 +105,7 @@ rid of some animations:
 
 ```sh
 brew reinstall yabai
-brew services stop koekeishiya/formulae/yabai
-sudo yabai --uninstall-sa
-sudo yabai --install-sa
-brew services start koekeishiya/formulae/yabai
+yabai --restart-service
 ```
 
 ## Coding standards
