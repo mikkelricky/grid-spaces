@@ -1,3 +1,6 @@
+> [!CAUTION]
+> Don't use this! Use [mikkelricky/yabai/tree/grid-spaces](https://github.com/mikkelricky/yabai/tree/grid-spaces).
+
 # Grid spaces
 
 Grid spaces a la [TotalSpaces2](https://totalspaces.binaryage.com/), but for
