@@ -65,6 +65,31 @@ cmd + ctrl + shift - right : «path to this directory»/navigate --move-window r
 
 That's it! Now you should be able to use your grid.
 
+## System preferences
+
+`yabai` and Grid spaces only work as expected when some Spaces system
+preferences are set correctly:
+
+![System Preferences: Set up spaces](images/set-up-spaces.png)
+
+* “Automatically rearrange Spaces based on most recent use” **must not** be checked
+* “Displays have separate Spaces” **must** be checked
+* “When switching to an application, switch to a Space with open windows for the
+  application” **may be** checked and might come in handy if you’ve lost a
+  window for an application that you’re onyl use on special occasions.
+
+Furthermore, all Mission Control space switching keyboard shortcuts should be
+disabled as all Space navigation should be handled by `skhd` calling the
+`navigate` script:
+
+![System Preferences: Mission Control space switching keyboard shortcuts](images/keyboard-shortcuts.png)
+
+Finally, you may want to [Reduce
+motion](https://support.apple.com/en-hk/guide/mac-help/mchlc03f57a1/mac) to get
+rid of some animations:
+
+![System Preferences: Reduce motion](images/reduce-motion.png)
+
 ## Updating
 
 ```sh
