@@ -44,19 +44,16 @@ skhd](https://github.com/koekeishiya/skhd#configuration) and define keyboard
 shortcuts for moving around in the grid, e.g.
 
 ```sh
-cmd + ctrl - up    : «path to this directory»/navigate up
-cmd + ctrl - down  : «path to this directory»/navigate down
-cmd + ctrl - left  : «path to this directory»/navigate left
-cmd + ctrl - right : «path to this directory»/navigate right
+cmd + ctrl - up            : «path to this directory»/navigate up
+cmd + ctrl - down          : «path to this directory»/navigate down
+cmd + ctrl - left          : «path to this directory»/navigate left
+cmd + ctrl - right         : «path to this directory»/navigate right
+
+cmd + ctrl + shift - up    : «path to this directory»/navigate --move-window up
+cmd + ctrl + shift - down  : «path to this directory»/navigate --move-window down
+cmd + ctrl + shift - left  : «path to this directory»/navigate --move-window left
+cmd + ctrl + shift - right : «path to this directory»/navigate --move-window right
 ```
-
-Run
-
-```sh
-for direction in up down left right; do printf "cmd + ctrl - %-8s: %s/navigate %s\n" $direction $PWD $direction; done
-```
-
-to easily generate the configuration.
 
 That's it! Now you should be able to use your grid.
 
